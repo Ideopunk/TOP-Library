@@ -5,13 +5,7 @@ function book(title, author, pages, read, info) {
     this.title = title
     this.author = author
     this.pages = pages
-    this.info = function() {
-        readresponse = "not read yet"
-        if (read === true) {
-            readresponse = "has been read" 
-        }
-        return title + " by " + author + ", " + pages + " pages, " + readresponse
-    }
+    this.read = read
 }
 
 myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
@@ -19,20 +13,20 @@ myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
 
 function createRow(newBook) {
     let bookRow = document.createElement('div');
+    bookRow.className = 'bookrow'
     if (newBook === undefined) {
         newBook = book;
     } 
     for (const prop in newBook) {
         let bookCell = document.createElement('div');
         bookCell.innerHTML = newBook[prop];
+        bookCell.className = 'bookcell'
         bookRow.appendChild(bookCell)
     }
     return bookRow;
 }
 
 
-
-// container.appendChild(createRow());
 function newTable() {
     container.innerHTML = ''
     for (let i = 0; i < myLibrary.length; i++) {
@@ -40,6 +34,7 @@ function newTable() {
         container.appendChild(newRow);
     }
 }
+
 
 function addBookToLibrary() {
     let title = prompt("Book title?")
