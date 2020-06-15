@@ -19,16 +19,24 @@ function createRow(newBook) {
     } 
     for (const prop in newBook) {
         let bookCell = document.createElement('div');
-        bookCell.innerHTML = newBook[prop];
+        bookCell.textContent = newBook[prop];
         bookCell.className = 'bookcell'
         bookRow.appendChild(bookCell)
     }
+    let deletionCell = document.createElement('div')
+    deletionCell.className = 'bookcell'
+    let deleteButton = document.createElement('button')
+    deleteButton.textContent = 'x';
+    deleteButton.className = 'deletionButton'
+    deleteButton.id = 'deletionButton'
+    deletionCell.appendChild(deleteButton)
+    bookRow.appendChild(deletionCell)
     return bookRow;
 }
 
 
 function newTable() {
-    container.innerHTML = ''
+    container.textContent = ''
     for (let i = 0; i < myLibrary.length; i++) {
         newRow = createRow(myLibrary[i])
         container.appendChild(newRow);
@@ -45,9 +53,34 @@ function addBookToLibrary() {
     newTable();
 }
 
+newTable()
+
 let addButton = document.querySelector('.addButton');
 addButton.addEventListener('click', () => {
     addBookToLibrary()
 })
+console.log(addButton)
 
-newTable()
+let deletionButtons = document.querySelectorAll('.deletionButton');
+console.log(deletionButton)
+deletionButtons.forEach((button) => {
+    console.log(button);
+    deletionButton.addEventListener('click', () => {
+        
+        
+        alert('yo')
+        // remove this one from library
+        let rowToDelete = button.parentNode;
+        let offendingTitle = rowToDelete.firstChild.textContent;
+        for (let i = 0; i < myLibrary.length; i++) {
+            console.log("offendingTitle: " + offendingTitle + "Current title in loop: " + myLibrary[i].title)
+            if (offendingTitle = myLibrary[i].title) {
+                myLibrary.splice(i, 1);
+            }
+        }
+
+        // then make a new table
+        newTable()
+    })
+})
+
