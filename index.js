@@ -70,14 +70,8 @@ deletionButtons.forEach((button) => {
         
         alert('yo')
         // remove this one from library
-        let rowToDelete = button.parentNode;
-        let offendingTitle = rowToDelete.firstChild.textContent;
-        for (let i = 0; i < myLibrary.length; i++) {
-            console.log("offendingTitle: " + offendingTitle + "Current title in loop: " + myLibrary[i].title)
-            if (offendingTitle = myLibrary[i].title) {
-                myLibrary.splice(i, 1);
-            }
-        }
+        let rowToDelete = button.parentNode.parentNode.remove();
+        console.log(rowToDelete + " is gone?")
 
         // then make a new table
         newTable()
