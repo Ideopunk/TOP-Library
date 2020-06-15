@@ -28,6 +28,19 @@ function createRow(newBook) {
     let deleteButton = document.createElement('button')
     deleteButton.textContent = 'x';
     deleteButton.className = 'deletionButton'
+    
+    deleteButton.addEventListener('click', () => {
+        
+        // remove this one from library
+        checkTitle = bookRow.firstChild.textContent;
+        for (let i = 0; i < myLibrary.length; i++) {
+            let currBuk = myLibrary[i]
+            console.log(currBuk.title + 'currbuk title')
+            if (checkTitle === currBuk.title) {
+                myLibrary.splice(i, 1) // RETURN TO THIS. IT'S NOT EDITING THE LIBRARY IN THE RIGHT ORDER OF FUNCTIONS!
+            }
+        }
+    })
     deleteButton.id = 'deletionButton'
     deletionCell.appendChild(deleteButton)
     bookRow.appendChild(deletionCell)
@@ -59,22 +72,24 @@ let addButton = document.querySelector('.addButton');
 addButton.addEventListener('click', () => {
     addBookToLibrary()
 })
-console.log(addButton)
 
-let deletionButtons = document.querySelectorAll('.deletionButton');
-console.log(deletionButton)
-deletionButtons.forEach((button) => {
-    console.log(button);
-    deletionButton.addEventListener('click', () => {
+// let deletionButtons = document.querySelectorAll('.deletionButton');
+// deletionButtons.forEach((button) => {
+//     deletionButton.addEventListener('click', () => {
         
-        
-        alert('yo')
-        // remove this one from library
-        let rowToDelete = button.parentNode.parentNode.remove();
-        console.log(rowToDelete + " is gone?")
+//         // remove this one from library
+//         let rowToDelete = button.parentNode.parentNode;
+//         checkTitle = rowToDelete.firstChild.textContent;
+//         for (let i = 0; i < myLibrary.length; i++) {
+//             let currBuk = myLibrary[i]
+//             console.log(currBuk.title + 'currbuk title')
+//             if (checkTitle === currBuk.title) {
+//                 myLibrary.splice(i, 1)
+//             }
+//         }
 
-        // then make a new table
-        newTable()
-    })
-})
+//         // then make a new table
+//         newTable()
+//     })
+// })
 
