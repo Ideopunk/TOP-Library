@@ -67,8 +67,21 @@ function createRow(newBook) {
 }
 
 
+
 function newTable() {
     container.textContent = ''
+    let headerRow = document.createElement('div')
+    headerRow.className = 'bookrow';
+    let values = ['Title', 'Author', 'Pages', 'Read', 'Delete']
+
+    for (let i = 0; i < values.length; i++) {
+        let cell = document.createElement('div')
+        cell.textContent = values[i]
+        cell.className = 'bookcell'
+        headerRow.appendChild(cell)
+    }
+    container.appendChild(headerRow)
+
     for (let i = 0; i < myLibrary.length; i++) {
         newRow = createRow(myLibrary[i])
         container.appendChild(newRow);
