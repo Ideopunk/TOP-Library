@@ -27,10 +27,9 @@ function createRow(newBook) {
     let bookRow = document.createElement('div');
     bookRow.className = 'bookrow';
     let values = Object.values(newBook);
-    console.log("values" + values)
+    delete values.toggleRead;
     for (const prop of values) {
         let bookCell = document.createElement('div');
-        console.log(prop + ": " + typeof(prop))
         // If it's the read status
         if (typeof(prop) === 'boolean') {
             let readingCheckBox = document.createElement('input')
@@ -101,8 +100,16 @@ function addBookToLibrary() {
     let author = prompt("Book author?")
     let pages = Number(prompt('Page count?'))
     let read = confirm('Have you read it? OK for yes, Cancel for No')
+    console.log(title, author, pages, read)
+    console.log(typeof(title) + title)
+    if (title === null || author === null || title === '' || author === '') {
+        console.log('psych')
+        alert("Fill out all fields!")
+        return;
+    }
     let len = myLibrary.length;
-    let storageObject = myLibrary[myLibrary.length] = new book(title, author, pages, read);
+    let storageObject = new book(title, author, pages, read);
+    myLibrary[len] = storageObject
     delete storageObject.toggleRead;
     window.localStorage.setItem(len, JSON.stringify(storageObject));
     newTable();
