@@ -32,16 +32,21 @@ function createRow(newBook) {
     delete values.toggleRead;
     for (const prop of values) {
         let bookCell = document.createElement('div');
+        let bookCellPar = document.createElement('p')
         // If it's the read status
         if (typeof(prop) === 'boolean') {
             let readingCheckBox = document.createElement('input')
             readingCheckBox.type = 'checkbox'
+            readingCheckBox.className = 'readbox'
+            readingCheckBox.value = 'readit'
             if (prop === true) {
                 readingCheckBox.setAttribute('checked', true)
             }            
             bookCell.appendChild(readingCheckBox)
         } else {
-            bookCell.textContent = prop;
+            bookCellPar.textContent = prop;
+            bookCell.appendChild(bookCellPar)
+            // bookCell.textContent = prop;
         }
         bookCell.className = 'bookcell'
         bookRow.appendChild(bookCell)
@@ -81,7 +86,7 @@ function newTable() {
     for (let i = 0; i < values.length; i++) {
         let cell = document.createElement('div')
         cell.textContent = values[i]
-        cell.className = 'bookcell'
+        cell.className = 'headercell'
         headerRow.appendChild(cell)
     }
     container.appendChild(headerRow)
@@ -99,16 +104,19 @@ function newTable() {
 
 function addBookToLibrary() {
     let title = prompt("Book title?")
-    let author = prompt("Book author?")
-    let pages = Number(prompt('Page count?'))
-    let read = confirm('Have you read it? OK for yes, Cancel for No')
-    console.log(title, author, pages, read)
-    console.log(typeof(title) + title)
-    if (title === null || author === null || title === '' || author === '') {
-        console.log('psych')
-        alert("Fill out all fields!")
-        return;
+    if (title === null || title === '') {
+        return
     }
+    let author = prompt("Book author?")
+    if (author === null || author === '') {
+        return
+    }
+    let pages = prompt('Page count?')
+    if (pages === null || pages === '') {
+        return
+    }
+    pages = Number(pages)
+    let read = confirm('Have you read it? OK for yes, Cancel for No')
     let len = myLibrary.length;
     let storageObject = new book(title, author, pages, read);
     myLibrary[len] = storageObject
@@ -117,7 +125,35 @@ function addBookToLibrary() {
     newTable();
 }
 
+
 newTable()
+
+let readboxes = document.querySelectorAll('.readbox')
+readboxes.forEach((readbox) => {
+    readbox.addEventListener('click', () => {
+
+        let title = readbox.parentNode.parentNode.firstChild.firstChild.textContent;
+        if (readbox.checked === true) {
+            for (let i = 0; i < localStorage.length; i++) {
+                let entry = localStorage[i]
+                entry = JSON.parse(entry)
+                if (title === entry.title) {
+                    myLibrary[i].read = true;
+                    localStorage.setItem(i, JSON.stringify(myLibrary[i]));
+                }   
+            }
+        } else {
+            for (let i = 0; i < localStorage.length; i++) {
+                let entry = localStorage[i]
+                entry = JSON.parse(entry)
+                if (title === entry.title) {
+                    myLibrary[i].read = false;
+                    localStorage.setItem(i, JSON.stringify(myLibrary[i]));
+                }   
+            }
+        }
+    })
+})
 
 let addButton = document.querySelector('.addButton');
 addButton.addEventListener('click', () => {
