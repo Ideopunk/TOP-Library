@@ -18,8 +18,7 @@ function book(title, author, pages, read, info) {
 let dune = myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
 
 for (let i = 0; i < localStorage.length; i++) {
-    console.log(JSON.parse(localStorage.getItem(i)));
-    myLibrary[i] = JSON.parse(localStorage.getItem(i));
+    let test = myLibrary[i] = JSON.parse(localStorage.getItem(i));
 }
 
 window.localStorage.setItem(0, JSON.stringify(dune));
@@ -28,10 +27,10 @@ function createRow(newBook) {
     let bookRow = document.createElement('div');
     bookRow.className = 'bookrow';
     let values = Object.values(newBook);
-    values.pop();
+    console.log("values" + values)
     for (const prop of values) {
         let bookCell = document.createElement('div');
-
+        console.log(prop + ": " + typeof(prop))
         // If it's the read status
         if (typeof(prop) === 'boolean') {
             let readingCheckBox = document.createElement('input')
@@ -56,10 +55,8 @@ function createRow(newBook) {
         
         // remove this one from library
         let checkTitle = bookRow.firstChild.textContent;
-        console.log(checkTitle)
         for (let i = 0; i < myLibrary.length; i++) {
             let currBuk = myLibrary[i]
-            console.log(currBuk.title + 'currbuk title')
             if (checkTitle === currBuk.title) {
                 myLibrary.splice(i, 1);
                 newTable();
@@ -106,6 +103,7 @@ function addBookToLibrary() {
     let read = confirm('Have you read it? OK for yes, Cancel for No')
     let len = myLibrary.length;
     let storageObject = myLibrary[myLibrary.length] = new book(title, author, pages, read);
+    delete storageObject.toggleRead;
     window.localStorage.setItem(len, JSON.stringify(storageObject));
     newTable();
 }

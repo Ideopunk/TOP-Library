@@ -4,59 +4,19 @@
         <title>
             Library
         </title>
-        <style>
-            #container {
-                display: grid;
-                border: 1px solid plum;
-                border-radius: 10px;
-            }
-            
-            .header {
-                background-color: hsl(318, 69%, 82%);
-            }
-
-            .bookrow {
-                display: grid;
-                grid-template-columns: repeat(5, 1fr);
-            }
-
-            .bookcell {
-                border: 1px solid rgb(228, 120, 210);
-                border-radius: 50px;
-                text-align: center;
-            }
-
-            .addButton {
-                position: absolute;
-                bottom: 20px;
-                right: 20px;
-                font-size: 30px;
-                background-color: white;
-                color: hsl(318, 76%, 64%);
-                border: 1px solid hsl(303, 89%, 83%);
-                height: 45px;
-                width: 45px;
-                border-radius: 50%;
-            }
-
-            .deletionButton {
-                background-color: rgb(255, 116, 116);
-                border: 1px solid rgb(236, 125, 125);
-                color: hsl(255, 26%, 32%);
-                border-radius: 50%;
-            }
-
-            h1, h2 {
-                text-align: center;
-            }
-
-        </style>
+        <link href='index.css' rel='stylesheet'>
     </head>
     <body>
         <!-- <h1>T.O.P. Library</h1>
         <h2>By Conor Barnes</h2> -->
         <div id='container'></div>
         
+        <div class="modal">
+            <div class='modal-content'>
+                <span class="close-btn">&times;</span>
+                <p>text inside modal</p>
+            </div>
+        </div>
         <button class='addButton'>
             +
         </button>
