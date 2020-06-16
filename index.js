@@ -16,6 +16,12 @@ function book(title, author, pages, read, info) {
 }
 
 let dune = myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
+
+for (let i = 0; i < localStorage.length; i++) {
+    console.log(JSON.parse(localStorage.getItem(i)));
+    myLibrary[i] = JSON.parse(localStorage.getItem(i));
+}
+
 window.localStorage.setItem(0, JSON.stringify(dune));
 
 function createRow(newBook) {
@@ -71,7 +77,7 @@ function createRow(newBook) {
 function newTable() {
     container.textContent = ''
     let headerRow = document.createElement('div')
-    headerRow.className = 'bookrow';
+    headerRow.className = 'bookrow header';
     let values = ['Title', 'Author', 'Pages', 'Read', 'Delete']
 
     for (let i = 0; i < values.length; i++) {
@@ -86,6 +92,9 @@ function newTable() {
         newRow = createRow(myLibrary[i])
         window.localStorage.setItem(i, JSON.stringify(myLibrary[i]))
         container.appendChild(newRow);
+    }
+    for (let i = myLibrary.length; i < window.localStorage.length; i++) {
+        localStorage.removeItem(i);
     }
 }
 
