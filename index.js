@@ -15,10 +15,12 @@ function book(title, author, pages, read, info) {
     } 
 }
 
-let dune = myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
+myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
+let dune = myLibrary[0]
+delete dune.toggleRead;
 
 for (let i = 0; i < localStorage.length; i++) {
-    let test = myLibrary[i] = JSON.parse(localStorage.getItem(i));
+    myLibrary[i] = JSON.parse(localStorage.getItem(i));
 }
 
 window.localStorage.setItem(0, JSON.stringify(dune));
