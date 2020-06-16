@@ -6,6 +6,13 @@ function book(title, author, pages, read, info) {
     this.author = author
     this.pages = pages
     this.read = read
+    this.toggleRead = function() {
+        if (read === true) {
+            read = false;
+        } else {
+            read = true;
+        }
+    } 
 }
 
 myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
@@ -13,10 +20,23 @@ myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
 
 function createRow(newBook) {
     let bookRow = document.createElement('div');
-    bookRow.className = 'bookrow'
-    for (const prop in newBook) {
+    bookRow.className = 'bookrow';
+    let values = Object.values(newBook);
+    values.pop();
+    for (const prop of values) {
         let bookCell = document.createElement('div');
-        bookCell.textContent = newBook[prop];
+
+        // If it's the read status
+        if (typeof(prop) === 'boolean') {
+            let readingCheckBox = document.createElement('input')
+            readingCheckBox.type = 'checkbox'
+            if (prop === true) {
+                readingCheckBox.setAttribute('checked', true)
+            }            
+            bookCell.appendChild(readingCheckBox)
+        } else {
+            bookCell.textContent = prop;
+        }
         bookCell.className = 'bookcell'
         bookRow.appendChild(bookCell)
     }
@@ -35,7 +55,7 @@ function createRow(newBook) {
             let currBuk = myLibrary[i]
             console.log(currBuk.title + 'currbuk title')
             if (checkTitle === currBuk.title) {
-                myLibrary.splice(i, 1) // RETURN TO THIS. IT'S NOT EDITING THE LIBRARY IN THE RIGHT ORDER OF FUNCTIONS!
+                myLibrary.splice(i, 1);
                 newTable();
             }
         }

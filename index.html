@@ -7,16 +7,19 @@
         <style>
             #container {
                 display: grid;
+                border: 1px solid plum;
+                border-radius: 50px;
             }
             
             .bookrow {
                 display: grid;
-                grid-template-columns: repeat(5, 120px);
+                grid-template-columns: repeat(5, 1fr);
             }
 
             .bookcell {
-                border: 1px solid black;
-                margin: 2px;
+                border: 1px solid rgb(228, 120, 210);
+                border-radius: 50px;
+                text-align: center;
             }
 
             .addButton {
@@ -33,8 +36,10 @@
             }
 
             .deletionButton {
-                background-color: red;
-                border: 1px solid red;
+                background-color: rgb(255, 116, 116);
+                border: 1px solid rgb(236, 125, 125);
+                color: hsl(255, 26%, 32%);
+                border-radius: 50%;
             }
 
         </style>
