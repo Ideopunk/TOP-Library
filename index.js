@@ -19,10 +19,12 @@ myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
 let dune = myLibrary[0]
 delete dune.toggleRead;
 
+// populate list from localstorage, to be drawn from when creating table. 
 for (let i = 0; i < localStorage.length; i++) {
     myLibrary[i] = JSON.parse(localStorage.getItem(i));
 }
 
+// if there are no entries in the library, create Dune row. 
 window.localStorage.setItem(0, JSON.stringify(dune));
 
 function createRow(newBook) {
@@ -46,7 +48,6 @@ function createRow(newBook) {
         } else {
             bookCellPar.textContent = prop;
             bookCell.appendChild(bookCellPar)
-            // bookCell.textContent = prop;
         }
         bookCell.className = 'bookcell'
         bookRow.appendChild(bookCell)
@@ -75,8 +76,7 @@ function createRow(newBook) {
     return bookRow;
 }
 
-
-
+// Reload table with updated data
 function newTable() {
     container.textContent = ''
     let headerRow = document.createElement('div')
@@ -125,7 +125,7 @@ function addBookToLibrary() {
     newTable();
 }
 
-
+// Initialize whole thing
 newTable()
 
 let readboxes = document.querySelectorAll('.readbox')

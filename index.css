@@ -25,7 +25,6 @@
     text-align: center;
     box-align: center;
     position: relative;
-    top:
 }
 
 .addButton {
@@ -46,14 +45,14 @@
     border: 1px solid rgb(236, 125, 125);
     color: hsl(255, 26%, 32%);
     border-radius: 50%;
-    font-size: 10px;
+    font-size: 15px;
     position: relative;
     top: 25%;
 }
 
 .readbox {
     position: relative;
-    top: 28%;
+    top: 30%;
 }
 
 h1, h2 {
