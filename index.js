@@ -14,9 +14,6 @@ myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
 function createRow(newBook) {
     let bookRow = document.createElement('div');
     bookRow.className = 'bookrow'
-    if (newBook === undefined) {
-        newBook = book;
-    } 
     for (const prop in newBook) {
         let bookCell = document.createElement('div');
         bookCell.textContent = newBook[prop];
@@ -32,12 +29,14 @@ function createRow(newBook) {
     deleteButton.addEventListener('click', () => {
         
         // remove this one from library
-        checkTitle = bookRow.firstChild.textContent;
+        let checkTitle = bookRow.firstChild.textContent;
+        console.log(checkTitle)
         for (let i = 0; i < myLibrary.length; i++) {
             let currBuk = myLibrary[i]
             console.log(currBuk.title + 'currbuk title')
             if (checkTitle === currBuk.title) {
                 myLibrary.splice(i, 1) // RETURN TO THIS. IT'S NOT EDITING THE LIBRARY IN THE RIGHT ORDER OF FUNCTIONS!
+                newTable();
             }
         }
     })
@@ -72,24 +71,3 @@ let addButton = document.querySelector('.addButton');
 addButton.addEventListener('click', () => {
     addBookToLibrary()
 })
-
-// let deletionButtons = document.querySelectorAll('.deletionButton');
-// deletionButtons.forEach((button) => {
-//     deletionButton.addEventListener('click', () => {
-        
-//         // remove this one from library
-//         let rowToDelete = button.parentNode.parentNode;
-//         checkTitle = rowToDelete.firstChild.textContent;
-//         for (let i = 0; i < myLibrary.length; i++) {
-//             let currBuk = myLibrary[i]
-//             console.log(currBuk.title + 'currbuk title')
-//             if (checkTitle === currBuk.title) {
-//                 myLibrary.splice(i, 1)
-//             }
-//         }
-
-//         // then make a new table
-//         newTable()
-//     })
-// })
-
