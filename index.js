@@ -15,8 +15,8 @@ function book(title, author, pages, read, info) {
     } 
 }
 
-myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
-
+let dune = myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
+window.localStorage.setItem(0, JSON.stringify(dune));
 
 function createRow(newBook) {
     let bookRow = document.createElement('div');
@@ -84,6 +84,7 @@ function newTable() {
 
     for (let i = 0; i < myLibrary.length; i++) {
         newRow = createRow(myLibrary[i])
+        window.localStorage.setItem(i, JSON.stringify(myLibrary[i]))
         container.appendChild(newRow);
     }
 }
@@ -92,9 +93,11 @@ function newTable() {
 function addBookToLibrary() {
     let title = prompt("Book title?")
     let author = prompt("Book author?")
-    let pages = prompt('Page count?')
+    let pages = Number(prompt('Page count?'))
     let read = confirm('Have you read it? OK for yes, Cancel for No')
-    myLibrary[myLibrary.length] = new book(title, author, pages, read)
+    let len = myLibrary.length;
+    let storageObject = myLibrary[myLibrary.length] = new book(title, author, pages, read);
+    window.localStorage.setItem(len, JSON.stringify(storageObject));
     newTable();
 }
 
