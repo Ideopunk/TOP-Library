@@ -1,18 +1,35 @@
 let myLibrary = [];
 let container = document.querySelector('#container');
 
-function book(title, author, pages, read, info) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-    this.toggleRead = function() {
-        if (read === true) {
-            read = false;
+// function book(title, author, pages, read, info) {
+//     this.title = title
+//     this.author = author
+//     this.pages = pages
+//     this.read = read
+//     this.toggleRead = function() {
+//         if (read === true) {
+//             read = false;
+//         } else {
+//             read = true;
+//         }
+//     } 
+// }
+
+class book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+
+    toggleRead() {
+        if (rthis.read === true) {
+            this.read = false;
         } else {
-            read = true;
+            this.read = true;
         }
-    } 
+    }
 }
 
 myLibrary[0] = new book('Dune', 'Frank Herbert', 412, true)
