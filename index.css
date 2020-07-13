@@ -27,18 +27,7 @@
     position: relative;
 }
 
-.addButton {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    font-size: 30px;
-    background-color: white;
-    color: hsl(318, 76%, 64%);
-    border: 1px solid hsl(303, 89%, 83%);
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
-}
+
 
 .deletionButton {
     background-color: rgb(255, 116, 116);
@@ -57,4 +46,27 @@
 
 h1, h2 {
     text-align: center;
+}
+
+form {
+    border-top: 1px solid palevioletred;
+    padding-top: 10px;
+    margin-bottom: 10px;
+}
+
+input {
+    border-radius: 15px;
+    border: 1px solid palevioletred;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+#formsubmit {
+    background-color: palevioletred;
+    border: 1px solid palevioletred;
+    border-radius: 15px;
+    width: 70%;
+    margin-left: 15%;
 }

@@ -1,19 +1,6 @@
 let myLibrary = [];
-let container = document.querySelector('#container');
+const container = document.querySelector('#container');
 
-// function book(title, author, pages, read, info) {
-//     this.title = title
-//     this.author = author
-//     this.pages = pages
-//     this.read = read
-//     this.toggleRead = function() {
-//         if (read === true) {
-//             read = false;
-//         } else {
-//             read = true;
-//         }
-//     } 
-// }
 
 class book {
     constructor(title, author, pages, read) {
@@ -24,7 +11,7 @@ class book {
     }
 
     toggleRead() {
-        if (rthis.read === true) {
+        if (this.read === true) {
             this.read = false;
         } else {
             this.read = true;
@@ -95,7 +82,10 @@ function createRow(newBook) {
 
 // Reload table with updated data
 function newTable() {
+    const prebookform = document.querySelector('#bookform')
+    const bookform = container.removeChild(prebookform)
     container.textContent = ''
+    container.appendChild(bookform)
     let headerRow = document.createElement('div')
     headerRow.className = 'bookrow header';
     let values = ['Title', 'Author', 'Pages', 'Read', 'Delete']
@@ -106,12 +96,12 @@ function newTable() {
         cell.className = 'headercell'
         headerRow.appendChild(cell)
     }
-    container.appendChild(headerRow)
+    container.insertBefore(headerRow, bookform)
 
     for (let i = 0; i < myLibrary.length; i++) {
         newRow = createRow(myLibrary[i])
         window.localStorage.setItem(i, JSON.stringify(myLibrary[i]))
-        container.appendChild(newRow);
+        container.insertBefore(newRow, bookform)
     }
     for (let i = myLibrary.length; i < window.localStorage.length; i++) {
         localStorage.removeItem(i);
@@ -120,26 +110,27 @@ function newTable() {
 
 
 function addBookToLibrary() {
-    let title = prompt("Book title?")
-    if (title === null || title === '') {
-        return
-    }
-    let author = prompt("Book author?")
-    if (author === null || author === '') {
-        return
-    }
-    let pages = prompt('Page count?')
-    if (pages === null || pages === '') {
-        return
-    }
-    pages = Number(pages)
-    let read = confirm('Have you read it? OK for yes, Cancel for No')
-    let len = myLibrary.length;
-    let storageObject = new book(title, author, pages, read);
-    myLibrary[len] = storageObject
-    delete storageObject.toggleRead;
-    window.localStorage.setItem(len, JSON.stringify(storageObject));
-    newTable();
+    console.log(event.target.parentNode)
+    // let title = prompt("Book title?")
+    // if (title === null || title === '') {
+    //     return
+    // }
+    // let author = prompt("Book author?")
+    // if (author === null || author === '') {
+    //     return
+    // }
+    // let pages = prompt('Page count?')
+    // if (pages === null || pages === '') {
+    //     return
+    // }
+    // pages = Number(pages)
+    // let read = confirm('Have you read it? OK for yes, Cancel for No')
+    // let len = myLibrary.length;
+    // let storageObject = new book(title, author, pages, read);
+    // myLibrary[len] = storageObject
+    // delete storageObject.toggleRead;
+    // window.localStorage.setItem(len, JSON.stringify(storageObject));
+    // newTable();
 }
 
 // Initialize whole thing
@@ -172,7 +163,8 @@ readboxes.forEach((readbox) => {
     })
 })
 
-let addButton = document.querySelector('.addButton');
-addButton.addEventListener('click', () => {
+let formsubmit = document.querySelector('#bookform');
+formsubmit.addEventListener('submit', () => {
+    console.log(event.target.parentNode)
     addBookToLibrary()
 })

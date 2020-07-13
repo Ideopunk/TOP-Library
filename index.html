@@ -7,14 +7,20 @@
         <link href='index.css' rel='stylesheet'>
     </head>
     <body>
-        <!-- <h1>T.O.P. Library</h1>
-        <h2>By Conor Barnes</h2> -->
-        <div id='container'></div>
+        <div id='container'>
+            <!-- <div class='bookrow' id='bookform'> -->
+                <form id='bookform' class='bookrow'>
+                    <input name='Title' maxlength="70" required>
+                    <input name='Author' maxlength='70'>
+                    <input name='Pages' min='1' type='number'>
+                    <input type='radio' name='Read'>
+                    <button type='submit' id='formsubmit'>Submit</button>
+
+                </form>
+            <!-- </div> -->
+        </div>
         
 
-        <button class='addButton'>
-            +
-        </button>
         <script src='index.js'></script>
     </body>
 </html>
